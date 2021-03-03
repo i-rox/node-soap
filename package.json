@@ -1,5 +1,5 @@
 {
-  "name": "@mem/soap",
+  "name": "@i-rox/soap",
   "version": "0.36.1",
   "description": "A minimal node SOAP client",
   "engines": {
