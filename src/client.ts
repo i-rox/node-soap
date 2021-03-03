@@ -503,6 +503,7 @@ export class Client extends EventEmitter {
 
     req = this.httpClient.request(location, xml, (err, response, body) => {
       this.lastResponse = body;
+      this.lastCert = response && response.connection && response.connection.getPeerCertificate();
       this.lastResponseHeaders = response && response.headers;
       this.lastElapsedTime = response && response.elapsedTime;
       this.emit('response', body, response, eid);
