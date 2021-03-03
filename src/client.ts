@@ -506,7 +506,7 @@ export class Client extends EventEmitter {
         if (response.statusCode !== 200 || !output || !output.$lookupTypes) {
           getStream(response).then((body) => {
             this.lastResponse = body;
-            this.lastServerCert = response && response.connection && response.connection.getPeerCertificate();
+            this.lastServerCert = response && response.connection;
             this.lastResponseHeaders = response && response.headers;
             this.lastElapsedTime = Date.now() - startTime;
             this.emit('response', body, response, eid);
@@ -524,7 +524,7 @@ export class Client extends EventEmitter {
         } else {
           this.wsdl.xmlToObject(response, (error, obj) => {
             this.lastResponse = response;
-            this.lastServerCert = response && response.connection && response.connection.getPeerCertificate();
+            this.lastServerCert = response && response.connection;
             this.lastResponseHeaders = response && response.headers;
             this.lastElapsedTime = Date.now() - startTime;
             this.emit('response', '<stream>', response, eid);
@@ -545,7 +545,7 @@ export class Client extends EventEmitter {
 
     req = this.httpClient.request(location, xml, (err, response, body) => {
       this.lastResponse = body;
-      this.lastServerCert = response && response.connection && response.connection.getPeerCertificate();
+      this.lastServerCert = response && response.connection;
       this.lastResponseHeaders = response && response.headers;
       this.lastElapsedTime = response && response.elapsedTime;
       this.emit('response', body, response, eid);
